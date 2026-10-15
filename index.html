@@ -696,6 +696,28 @@ function ac(){
   if(AC.state==='suspended') AC.resume();
   return AC;
 }
+/* 모바일, 특히 iOS는 손가락을 뗄 때(touchend, click)에만 소리를 열어 줍니다. 페이지 어디든 처음 탭하는 순간 소리를 엽니다.
+   iPhone의 무음 스위치가 켜져 있어도 들리도록 재생용 오디오 세션을 요청하고, 그 API가 없는 기기에서는 무음 <audio>를 함께 틀어 둡니다. */
+let audioOpen=false, silentEl=null;
+function silentWav(){
+  const n=4000, b=new ArrayBuffer(44+n), v=new DataView(b), w=(o,t)=>{ for(let i=0;i<t.length;i++) v.setUint8(o+i,t.charCodeAt(i)); };
+  w(0,'RIFF'); v.setUint32(4,36+n,true); w(8,'WAVEfmt '); v.setUint32(16,16,true); v.setUint16(20,1,true); v.setUint16(22,1,true);
+  v.setUint32(24,8000,true); v.setUint32(28,8000,true); v.setUint16(32,1,true); v.setUint16(34,8,true); w(36,'data'); v.setUint32(40,n,true);
+  for(let i=0;i<n;i++) v.setUint8(44+i,128);
+  return URL.createObjectURL(new Blob([b],{type:'audio/wav'}));
+}
+function openAudio(){
+  if(audioOpen) return;
+  try{ if(navigator.audioSession) navigator.audioSession.type='playback'; }catch(e){}
+  const c=ac();
+  try{ const src=c.createBufferSource(); src.buffer=c.createBuffer(1,1,22050); src.connect(c.destination); src.start(0); }catch(e){}
+  if(!navigator.audioSession && !silentEl){
+    try{ silentEl=new Audio(silentWav()); silentEl.loop=true; silentEl.setAttribute('playsinline',''); silentEl.play().catch(()=>{}); }catch(e){}
+  }
+  if(c.state==='running') audioOpen=true;
+  else c.resume().then(()=>{ audioOpen=c.state==='running'; }).catch(()=>{});
+}
+['touchend','click','pointerup','keydown'].forEach(k=>document.addEventListener(k,openAudio,{capture:true,passive:true}));
 function voice(p){
   const c=ac(), sr=c.sampleRate, n=Math.max(64,Math.floor(p.dur*sr));
   const b=c.createBuffer(1,n,sr), d=b.getChannelData(0);
