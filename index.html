@@ -289,7 +289,33 @@ h1,h2,h3,p,figure{margin:0}
   display:grid;place-items:center;flex:none;margin-top:2px;
 }
 .pbtn svg{width:11px;height:11px;fill:currentColor}
-.switch{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;margin-bottom:2em}
+.switch{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;margin-bottom:.8em}
+.mode-note{color:var(--ink-2);margin:0 0 2em;max-width:var(--measure)}
+#readBtn{border:1px solid currentColor;padding:1px 12px;margin-left:.4em;color:var(--ink)}
+/* 안 2~4의 본문 어구 */
+.cue-figure,.cue-margin,.cue-scroll{background:none;color:inherit;padding:0}
+.cue-figure{text-decoration:none;border-bottom:1px solid var(--rule)}
+.cue-margin{text-decoration:underline dotted;text-underline-offset:.28em}
+.cue-scroll{text-decoration:none;transition:background .5s,color .5s}
+.cue-scroll.on{background:var(--sound);color:var(--on-sound);outline:0}
+/* 안 2: 문단 사이 도판 */
+.sfig{margin:.6em 0 2.2em}
+.sfig-box{position:relative;cursor:pointer;outline-offset:6px}
+.sfig canvas{display:block;width:100%;height:190px}
+.sfig figcaption{font-size:.83rem;line-height:1.6;color:var(--ink-2);margin-top:.5em}
+.sfig-box.on{outline:2px solid var(--sound)}
+.ph{position:absolute;top:0;bottom:18px;width:2px;margin-left:-1px;background:var(--sound);display:none;pointer-events:none}
+/* 안 3: 여백의 파형 */
+.swave{border-top:1px solid var(--ink);padding:10px 0 14px;font-size:.83rem;line-height:1.6;text-align:left}
+.swave .len{margin-left:.6em}
+.swave-box{position:relative;cursor:ew-resize;margin:8px 0 6px;touch-action:none}
+.swave-box .ph{bottom:0}
+.swave canvas{display:block;width:100%;height:44px}
+.swave p{color:var(--ink-2)}
+.swave.on strong{background:var(--sound);color:var(--on-sound)}
+/* 안 4: 여백의 작은 이름 */
+.sread{font-size:.83rem;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:8px;text-align:left}
+.sread.on{color:var(--ink);border-top-color:var(--ink)}
 .switch button{border-bottom:1px solid transparent;color:var(--ink-2)}
 .switch button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
 
@@ -416,7 +442,7 @@ window.FIELD_AUDIO="data:audio/mp4;base64,AAAAHGZ0eXBNNEEgAAAAAE00QSBtcDQyaXNvbQ
 const PIECES = [
 {
   id:'hangsi',
-  role:{ko:'글, 소리 스니펫', en:'Text and sound snippet'}, tpl:'annotated', modes:['text','sound'], sndPending:true, sndSwitch:true,
+  role:{ko:'글, 소리 스니펫', en:'Text and sound snippet'}, tpl:'annotated', modes:['text','sound'], sndSwitch:true,
   body:{"ko": ["영상 인코더는 다른 프레임을 참조하지 않고 단독으로 복원되는 I-프레임(intra-coded frame)을 간간이 배치한다. 그 사이의 프레임은 이미 복원된 참조 프레임의 블록을 움직임 벡터만큼 옮겨 예측하고, 그림 자체 대신 움직임 벡터와 잔차(殘差), 즉 예측과 실제의 차이를 부호화(符號化)한다. 시각효과 기법 중 하나인 데이터모싱(datamoshing)은 영상 A에서 영상 B로 넘어가는 자리의 I-프레임을 지워, B의 움직임 벡터와 잔차가 A의 마지막 그림 위에서 복원되게 한다. 그 결과는 B의 움직임이 A의 그림을 끌고 다니는 모습이다. 이때 관객은 끌려다니는 A의 그림 위로 어른거리는 B의 형상을 마주한다.", "비명 생성기는 {s1:교차합성(交叉合成)}에서 시작한다. 음원 A에서는 진폭 스펙트럼만, B에서는 위상 스펙트럼만 가져와 프레임마다 다시 합친다. 여기서 최소위상(最小位相)이라는 개념이 중요해진다. 유리(有理) 전달함수로 기술되는 인과적이고 안정된 시스템은 모두 최소위상 성분과 전역통과(全域通過) 성분의 곱으로 나뉜다. 그리고 최소위상 성분의 위상은 로그 진폭과 힐베르트 변환으로 묶여 있어 진폭 스펙트럼만으로도 완전히 복원된다. 이 성분은 같은 진폭을 가진 인과적 신호 가운데 에너지가 매 순간 가장 앞쪽에 몰려 도착하는 판본이다. 진폭이 허락하는 한 가장 덜 머뭇거리며 요점부터 도착하는 사람, 에이전트가 필요로 하는 '사회적으로 존립 가능한 자기 단위'. 비명 생성기는 A의 진폭에 손대지 않으므로 이 판본을 흐트러뜨리지 않는다. 진폭이 결정하지 못하는 나머지, 곧 B의 위상이 A의 최소위상에서 벗어난 만큼은 전역통과 성분에 담긴다. 전역통과 필터는 어떤 주파수에서도 진폭으로 매겨지는 점수에는 오차를 더하지 않는다. 다만 시간 구조를 바꾸어 에너지를 흩뜨릴 뿐이다. 이력(履歷)에 남지 않는 이야기들은 이 성분 안에 산다.", "음원 B의 움직임, 곧 프레임 사이 위상의 진행을 아주 작게 만들면 매 프레임이 거의 같은 위상으로 되풀이되고, 분석 프레임이 넘어가는 {s2:홉(hop)의 주기가 소리의 표면에 드러난다}. 데이터모싱에서 이웃한 블록의 움직임 벡터가 서로 어긋나는 자리에서는 그림이 블록 경계를 따라 찢기며 코덱의 블록 격자(格子)가 표면으로 떠오르듯이 말이다. 이 거친 질감의 근원은 과거 극단을 추구하는데 애용되었던 디스토션(distortion), 즉 음향기술이 증강시킨 대상의 힘이 아니라 시간을 격자로 자르는 분석 장치 자신의 박자에서 온다. 비명 생성기는 이 요철을 결함으로 지우지 않고, 에이전트는 대상이 거의 정지해 있을 때도 무엇인가 들을 수 있다. 그리고 에이전트가 듣는 것이 바로 분석의 격자라는 점에서, 이는 자기 인식의 기회이기도 하다.", "이 소리를 다시 포먼트 필터(Formant filter)에 통과시키면 {s3:짐승의 그르렁거림처럼 들린다}. 에이전트는 포먼트 프로파일에서 짐승의 덩치를 읽는다. 성도(聲道)의 길이가 몸 크기에 묶여 있어 포먼트는 비교적 정직한 신호로 여겨지나, 붉은사슴처럼 후두를 끌어내려 몸집이 더 커 보이게 하는 동물도 있다<sup>1</sup>. 포먼트는 믿음과 검증의 대상이 되고 때로는 과장되기도 하는, 다시 말해 증언의 문제와 결부되어 있다. 기계의 단차가 포먼트를 통과해 짐승이 되는 순간, 이름 없는 잡음은 육신을 입는다. 비명 생성기는 이렇게 에이전트의 분류 행위에 목소리를 제공한다. 그 비명은 짐승의 것도 기계의 것도 아니며, 분류 자체의 것이다."], "en": ["A video encoder places I-frames (intra-coded frames) at intervals; these are reconstructed on their own, without reference to any other frame. The frames in between are predicted by shifting blocks of already-reconstructed reference frames by their motion vectors, and instead of the picture itself, what gets encoded is the motion vectors and the residual, that is, the difference between the prediction and the actual frame. Datamoshing, a visual effects technique, deletes the I-frame at the point where video A cuts to video B, so that B's motion vectors and residuals are reconstructed on top of A's last picture. The result is B's motion dragging A's picture around. The viewer is faced with B's form shimmering over A's picture as it is dragged along.", "The scream generator begins with {s1:cross-synthesis}. It takes only the magnitude spectrum from sound source A and only the phase spectrum from B, and recombines them frame by frame. Here the notion of minimum phase becomes important. Every causal, stable system described by a rational transfer function factors into the product of a minimum-phase component and an all-pass component. And the phase of the minimum-phase component, bound to the log magnitude through the Hilbert transform, can be fully recovered from the magnitude spectrum alone. Of all causal signals sharing the same magnitude, this component is the version whose energy, at every instant, arrives most heavily front-loaded. The person who, as far as the magnitude allows, hesitates least and arrives with the point first: the \"socially viable unit of self\" the agent requires. Because the scream generator leaves A's magnitude untouched, it does not disturb this version. The remainder the magnitude cannot determine, namely the extent to which B's phase departs from A's minimum phase, is held in the all-pass component. At no frequency does an all-pass filter add error to a score reckoned in magnitude. It only alters the temporal structure, scattering the energy. The stories that never enter the log live inside this component.", "When B's motion, that is, the advance of phase from frame to frame, is made very small, every frame repeats with nearly the same phase, and {s2:the period of the hop by which the analysis frames advance rises to the surface of the sound}. It is much like datamoshing: wherever the motion vectors of neighboring blocks disagree, the picture tears along the block boundaries and the codec's block grid rises to the surface. This rough texture comes not from distortion, long a favored means of chasing extremes, the object's own force amplified by audio technology, but from the beat of the analysis apparatus itself, which slices time into a grid. The scream generator does not erase these ridges as a defect, and the agent has something to hear even when the object is nearly at rest. And since what the agent hears is precisely the grid of analysis, this is also an occasion for self-recognition.", "When this sound is then passed through a formant filter, {s3:it sounds like the growl of a beast}. The agent reads the beast's size from its formant profile. Because the length of the vocal tract is tied to body size, formants are regarded as a relatively honest signal, yet some animals, like the red deer, draw the larynx down to make their bodies seem larger<sup>1</sup>. Formants are objects of belief and verification, and at times of exaggeration; in other words, they are bound up with the problem of testimony. At the moment the machine's steps pass through the formants and become a beast, nameless noise takes on flesh. In this way the scream generator lends a voice to the agent's act of classification. The scream belongs neither to beast nor to machine, but to classification itself."]},
   foot:{"ko": ["<sup>1</sup> Fitch, W. T., &amp; Reby, D. (2001). The descended larynx is not uniquely human. Proceedings of the Royal Society of London. Series B: Biological Sciences, 268(1477), 1669–1675. <a href=\"https://doi.org/10.1098/rspb.2001.1704\" target=\"_blank\" rel=\"noopener\">https://doi.org/10.1098/rspb.2001.1704</a>", "ⓒ박항시, 2026. 9. 27."], "en": ["<sup>1</sup> Fitch, W. T., &amp; Reby, D. (2001). The descended larynx is not uniquely human. Proceedings of the Royal Society of London. Series B: Biological Sciences, 268(1477), 1669–1675. <a href=\"https://doi.org/10.1098/rspb.2001.1704\" target=\"_blank\" rel=\"noopener\">https://doi.org/10.1098/rspb.2001.1704</a>", "ⓒVKHNC, 2026. 9. 27"]},
   name:{ko:'박항시 <small>VKHNC</small>', en:'Hangsi Park <small>VKHNC</small>'},
@@ -513,15 +539,16 @@ const PIECES = [
 
 /* 자리표시 소리. 실제 파일이 오면 { file:'...' } 로 바꿉니다. */
 const SNIPS = [
-  {id:'s1', r:2.9, f0:98,  dur:2.4,
-   title:{ko:'자리표시 합성음 1', en:'Placeholder sound 1'},
-   desc:{ko:'임시 합성음입니다. 주기 발성으로, 모든 주기가 같은 모양으로 되풀이됩니다.', en:'Temporary synthesized sound. Periodic phonation: every cycle repeats in the same shape.'}},
-  {id:'s2', r:3.3, f0:98,  dur:2.4,
-   title:{ko:'자리표시 합성음 2', en:'Placeholder sound 2'},
-   desc:{ko:'임시 합성음입니다. 하위 배음으로, 큰 주기와 작은 주기가 번갈아 나와 한 옥타브 아래 소리가 섞입니다.', en:'Temporary synthesized sound. Subharmonics: large and small cycles alternate, adding a tone one octave below.'}},
-  {id:'s3', r:3.86, f0:98, dur:3.0,
-   title:{ko:'자리표시 합성음 3', en:'Placeholder sound 3'},
-   desc:{ko:'임시 합성음입니다. 카오스로, 주기마다 길이와 세기가 불규칙하게 달라져 거칠게 들립니다.', en:'Temporary synthesized sound. Chaos: the length and strength of each cycle vary irregularly, so it sounds rough.'}},
+  /* 테스트 음원: 악기를 조율할 때 쓰는 기준음들 */
+  {id:'s1', dry:true, gain:.7, dur:2.5, tone:{f:[440],a:[1]},
+   title:{ko:'테스트 음원 1', en:'Test tone 1'},
+   desc:{ko:'테스트 음원 1. 440 Hz 사인파, 국제 표준 음높이 A4.', en:'Test tone 1. A 440 Hz sine, the standard pitch A4.'}},
+  {id:'s2', dry:true, gain:.7, dur:3.2, tone:{f:[440,880,1320,1760],a:[1,.14,.05,.02],decay:1.1},
+   title:{ko:'테스트 음원 2', en:'Test tone 2'},
+   desc:{ko:'테스트 음원 2. 440 Hz 소리굽쇠. 친 뒤 서서히 잦아드는 A4.', en:'Test tone 2. A 440 Hz tuning fork: A4, struck and slowly dying away.'}},
+  {id:'s3', dry:true, gain:.6, dur:3.0, tone:{f:[440,659.26],a:[1,.8]},
+   title:{ko:'테스트 음원 3', en:'Test tone 3'},
+   desc:{ko:'테스트 음원 3. A4와 E5(440 Hz와 659.3 Hz)의 완전5도. 현악기 개방현을 맞출 때 듣는 음정.', en:'Test tone 3. A4 and E5 (440 and 659.3 Hz), a perfect fifth, the interval heard when tuning open strings.'}},
 
   /* 아디탸 슈클라의 글. 크라노사우르의 발성을 글에 적힌 조건대로 합성합니다 */
   ...(()=>{ const CH=[69.30,82.41,98.00,138.59,164.81,196.00,277.18,329.63,392.00]; return [
@@ -578,6 +605,13 @@ ko:{
   koOnly:'',
   stop:'정지', play:'재생',
   swLabel:'소리 형식 비교(편집용)', swMulti:'어구마다 파일 하나', swSingle:'긴 음원 하나',
+  sw:{inline:'안 1 · 글자에 걸린 소리', figure:'안 2 · 문단 사이 도판', margin:'안 3 · 여백의 파형', scroll:'안 4 · 읽는 자리에서 재생'},
+  swNote:{inline:'본문의 노란 어구를 누르면 소리가 납니다. 소리의 이름과 설명은 오른쪽 여백에 놓입니다.',
+          figure:'소리가 문단 사이에 스펙트로그램 도판으로 놓입니다. 도판을 누르면 처음부터 재생합니다.',
+          margin:'오른쪽 여백에 소리의 파형이 놓입니다. 파형을 누르거나 끌면 그 자리부터 들립니다. 본문의 점선 어구는 처음부터 재생합니다.',
+          scroll:'읽는 자리가 곧 재생 위치입니다. 소리가 걸린 문단이 화면 가운데를 지나는 동안 그 소리가 낮게 이어집니다.'},
+  readOn:'읽는 자리에서 듣기 켜기', readOff:'끄기',
+  sfigCap:(n,len)=>`그림 ${n}. 테스트 음원 ${n}의 스펙트로그램(${len}). 누르면 재생합니다.`,
   track:'자리표시 음원 전체',
   fieldHelp:'조각 하나를 누르고 있으면 그 울음이 한 번 나고, 소리가 가장 가까운 이웃부터 먼 이웃으로 번진 뒤 떼가 웅성거립니다. 누른 채 끌고 다니면 부딪힌 조각들이 놀라서 웁니다. 놓으면 저마다 제자리로 흩어지는데, 그 제자리도 천천히 흘러갑니다. 마우스를 올리면 그 울음을 알파벳으로 읽은 글자가 나오고, 누르고 있는 동안 남습니다. 누른 조각의 종 이름은 글리프들 아래 왼쪽에 작게 나옵니다. 키보드에서는 좌우 화살표로 조각을 차례로 잡고 Esc로 놓습니다.',
   fieldAria:'동물 발성 조각들. 좌우 화살표로 조각을 하나씩 잡아 듣고, Esc로 놓습니다.',
@@ -607,6 +641,13 @@ en:{
   koOnly:'This text is currently available in Korean only.',
   stop:'Stop', play:'Play',
   swLabel:'Compare sound formats (for editing)', swMulti:'One file per phrase', swSingle:'One long track',
+  sw:{inline:'A · Sound on the words', figure:'B · Figure between paragraphs', margin:'C · Waveform in the margin', scroll:'D · Plays where you read'},
+  swNote:{inline:'Press a yellow phrase in the text to hear it. The name and description of each sound sit in the right margin.',
+          figure:'Each sound sits between paragraphs as a spectrogram figure. Press the figure to play it from the start.',
+          margin:'The waveform of each sound sits in the right margin. Press or drag on it to listen from that point. A dotted phrase in the text plays from the start.',
+          scroll:'Where you read is where it plays. While a paragraph with a sound passes the middle of the screen, its sound continues quietly.'},
+  readOn:'Turn on listening as you read', readOff:'Turn off',
+  sfigCap:(n,len)=>`Figure ${n}. Spectrogram of test tone ${n} (${len}). Press to play.`,
   track:'Full placeholder track',
   fieldHelp:'Press and hold a unit: its call sounds once, then the sound spreads from the nearest neighbours to the farthest, and the swarm keeps murmuring. Drag it around and the units it bumps into cry out, startled. Let go and they scatter back to their places, which keep drifting slowly. Hover to read the call in letters; they stay while you hold it, and the species appears small below the glyphs, on the left. On a keyboard, the left and right arrows take hold of the units one by one and Esc lets go.',
   fieldAria:'Units of animal vocalization. Use left and right arrows to take hold of one unit at a time and hear it, Esc to let go.',
@@ -666,7 +707,7 @@ const $ = (s,el=document)=>el.querySelector(s);
 const $$ = (s,el=document)=>[...el.querySelectorAll(s)];
 const byId = Object.fromEntries(PIECES.map(p=>[p.id,p]));
 const SUM = {"hangsi": {"ko": "사람을 분류하는 에이전트에게 목소리를 준다면 어떤 소리여야 하는가", "en": "If an agent that classifies people is given a voice, what should it sound like?"}, "ghost2": {"ko": "관찰하고 판단하는 능력을 자기 안의 기계로 볼 때, 대화형 에이전트와 맺게 되는 관계", "en": "The relation one forms with conversational agents when the capacities to observe and judge are seen as a machine inside oneself"}, "agnes": {"ko": "보조 장치 없이 몸만으로 내는, 말도 노래도 아닌 목소리", "en": "A voice made with the body alone, without aids, that is neither speech nor song"}, "anikin": {"ko": "거친 목소리는 거슬린다고 평가되지만 주의를 실제로 빼앗지는 못한다는 지각 실험 열 건", "en": "Ten perceptual experiments showing that rough voices are rated as annoying but do not actually take attention away"}, "aditya": {"ko": "해부학적 구조에서 출발해 가정해 본 어느 외계 종의 문법과 의미론", "en": "The grammar and semantics of an alien species, hypothesized from its anatomy"}, "boryeon": {"ko": "소리로 체구를 과장하는 일, 그리고 남성성과 속임수의 관계", "en": "Exaggerating body size through sound, and the relation between masculinity and cheating"}, "rohit": {"ko": "선율과 화성과 리듬이 들어맞지 않는 음악을 질감, 움직임, 음향으로 다시 나누기", "en": "Re-dividing music into texture, movement and acoustics where melody, harmony and rhythm do not apply"}};
-const S = {lang:'ko', view:'home', piece:null, homeY:0, sndMode:'multi'};
+const S = {lang:'ko', view:'home', piece:null, homeY:0, sndMode:'inline', readOn:false};
 const t = k => T[S.lang][k];
 const L = o => o ? (o[S.lang] ?? o.ko) : '';
 const fmt = s => { s=Math.max(0,Math.round(s)); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); };
@@ -816,7 +857,19 @@ function fadeStop(h,sec=.06){
 
 /* 스니펫 버퍼와 긴 음원(스니펫을 이어 붙인 것) */
 const bufCache={};
-const snipBuf = s => bufCache[s.id] || (bufCache[s.id]= s.cran ? cran(s.cran) : s.sweep ? cranSweep(s.sweep) : voice({r:s.r,f0:s.f0,dur:s.dur,seed:3}));
+const snipBuf = s => bufCache[s.id] || (bufCache[s.id]= s.tone ? toneBuf(s) : s.cran ? cran(s.cran) : s.sweep ? cranSweep(s.sweep) : voice({r:s.r,f0:s.f0,dur:s.dur,seed:3}));
+/* 조율용 기준음: 사인파 몇 개의 합. decay가 있으면 소리굽쇠처럼 잦아듭니다 */
+function toneData(s,sr){
+  const p=s.tone, n=Math.floor(s.dur*sr), d=new Float32Array(n), at=.02*sr, rl=.18*sr;
+  let pk=1e-6;
+  for(let i=0;i<n;i++){
+    let v=0; for(let k=0;k<p.f.length;k++) v+=p.a[k]*Math.sin(2*Math.PI*p.f[k]*i/sr)*(p.decay?Math.exp(-i/sr/(p.decay/(1+k))):1);
+    const e=Math.min(1,i/at,(n-i)/rl); d[i]=v*e; if(Math.abs(d[i])>pk) pk=Math.abs(d[i]);
+  }
+  for(let i=0;i<n;i++) d[i]*=.8/pk;
+  return d;
+}
+function toneBuf(s){ const c=ac(), d=toneData(s,c.sampleRate), b=c.createBuffer(1,d.length,c.sampleRate); b.getChannelData(0).set(d); return b; }
 const pieceSnips = () => SNIPS.filter(x=>(x.piece||'hangsi')===(S.piece?S.piece.id:'hangsi'));
 let trackCache=null;   // 긴 음원 비교는 박항시 글에서만 씁니다
 function track(){
@@ -837,6 +890,7 @@ function stopAll(){
   P.now=null; cancelAnimationFrame(P.raf);
   $('#player').hidden=true;
   $$('.on').forEach(e=>e.classList.remove('on'));
+  $$('.ph').forEach(e=>e.style.display='none');
   $$('.pbtn').forEach(b=>b.setAttribute('aria-label',t('play')));
 }
 function showPlayer(title,cueMarks){
@@ -853,6 +907,9 @@ function tick(){
   const el=n.elapsed ? n.elapsed() : AC.currentTime-n.t0+n.offset;
   $('#pBar i').style.width=Math.min(100,el/n.total*100)+'%';
   $('#pTime').textContent=fmt(el)+' / '+fmt(n.total);
+  $$('.ph').forEach(e=>{ const on=e.dataset.snd===n.id; e.style.display=on?'block':'none';
+    if(on){ const box=e.parentElement, x0=parseFloat(getComputedStyle(box).getPropertyValue('--x0'))||0, w=box.clientWidth-x0;
+      e.style.left=(x0+Math.min(1,el/n.total)*w)+'px'; } });
   if(n.cues){
     let cur=null; for(const s of pieceSnips()){ if(el>=n.cues[s.id]-.01 && el<n.cues[s.id]+s.dur) cur=s.id; }
     if(cur!==n.cur){ n.cur=cur; markOn(cur); }
@@ -877,6 +934,92 @@ function playSnip(id){
   }
   tick();
 }
+
+/* 안 2, 3: 소리 안의 한 자리부터 재생 */
+function playSnipAt(id,off){
+  const s=SNIPS.find(x=>x.id===id); if(!s) return;
+  stopAll(); ac();
+  off=Math.max(0,Math.min(s.dur-.05,off||0));
+  const h=playBuf(snipBuf(s),{dry:true,gain:s.gain??1,offset:off,onend:()=>{ if(P.now&&P.now.h===h) stopAll(); }});
+  P.now={id,h,t0:AC.currentTime,offset:off,total:s.dur};
+  showPlayer(L(s.title)); markOn(id); tick();
+}
+/* 안 4: 소리가 걸린 문단이 화면 가운데를 지나는 동안 낮게 이어서 */
+let readObs=null;
+function readPlay(id){
+  const s=SNIPS.find(x=>x.id===id); if(!s) return;
+  if(P.now&&P.now.id===id&&P.now.read) return;
+  stopAll(); ac();
+  const h=playBuf(snipBuf(s),{dry:true,gain:0});
+  h.src.loop=true; h.out.gain.setTargetAtTime((s.gain??1)*.75,AC.currentTime,.3);
+  const t0=AC.currentTime;
+  P.now={id,h,read:true,t0,offset:0,total:s.dur,elapsed:()=>(AC.currentTime-t0)%s.dur};
+  showPlayer(L(s.title)); markOn(id); tick();
+}
+function initRead(){
+  if(readObs){ readObs.disconnect(); readObs=null; }
+  if(S.sndMode!=='scroll'||!S.readOn) return;
+  readObs=new IntersectionObserver(es=>es.forEach(e=>{
+    const c=e.target.querySelector('.cue'); if(!c) return;
+    if(e.isIntersecting) readPlay(c.dataset.snd);
+    else if(P.now&&P.now.read&&P.now.id===c.dataset.snd) stopAll();
+  }),{rootMargin:'-42% 0px -42% 0px'});
+  $$('.prose .pr > p').filter(x=>x.querySelector('.cue')).forEach(x=>readObs.observe(x));
+}
+/* 스펙트로그램과 파형 그리기. 잉크 색을 따르므로 밝기 모드가 바뀌면 다시 그립니다 */
+function fft(re,im){
+  const n=re.length;
+  for(let i=1,j=0;i<n;i++){ let b=n>>1; for(;j&b;b>>=1) j^=b; j^=b; if(i<j){ [re[i],re[j]]=[re[j],re[i]]; [im[i],im[j]]=[im[j],im[i]]; } }
+  for(let len=2;len<=n;len<<=1){ const a=-2*Math.PI/len, wr=Math.cos(a), wi=Math.sin(a);
+    for(let i=0;i<n;i+=len){ let cr=1,ci=0; for(let k=0;k<len/2;k++){ const ur=re[i+k],ui=im[i+k], xr=re[i+k+len/2]*cr-im[i+k+len/2]*ci, xi=re[i+k+len/2]*ci+im[i+k+len/2]*cr;
+      re[i+k]=ur+xr; im[i+k]=ui+xi; re[i+k+len/2]=ur-xr; im[i+k+len/2]=ui-xi; const t_=cr*wr-ci*wi; ci=cr*wi+ci*wr; cr=t_; } } }
+}
+const inkRGB=()=>{ const c=getComputedStyle(document.documentElement).getPropertyValue('--ink').trim(); const n=parseInt(c.slice(1),16); return [n>>16,n>>8&255,n&255]; };
+function drawSpec(cv){
+  const s=SNIPS.find(x=>x.id===cv.dataset.snd); if(!s||!s.tone) return;
+  const sr=16000, d=toneData(s,sr), N=1024, hop=128, F=Math.floor((d.length-N)/hop), R=150, fmin=100, fmax=4000;
+  const img=new ImageData(F,R), [r,g,b]=inkRGB(), win=new Float32Array(N).map((_,i)=>.5-.5*Math.cos(2*Math.PI*i/N));
+  for(let f=0;f<F;f++){
+    const re=new Float32Array(N), im=new Float32Array(N); for(let i=0;i<N;i++) re[i]=d[f*hop+i]*win[i];
+    fft(re,im);
+    for(let y=0;y<R;y++){
+      const hz=fmin*Math.pow(fmax/fmin,1-y/(R-1)), k=Math.round(hz/sr*N), m=Math.hypot(re[k],im[k])/N*4;
+      const db=20*Math.log10(m+1e-9), a=Math.max(0,Math.min(1,(db+64)/56)), o=(y*F+f)*4;
+      img.data[o]=r; img.data[o+1]=g; img.data[o+2]=b; img.data[o+3]=a*255;
+    }
+  }
+  const off=document.createElement('canvas'); off.width=F; off.height=R; off.getContext('2d').putImageData(img,0,0);
+  const dpr=Math.min(2,devicePixelRatio||1), W=cv.clientWidth, H=cv.clientHeight, L=34;
+  cv.width=W*dpr; cv.height=H*dpr; const x=cv.getContext('2d'); x.scale(dpr,dpr); x.imageSmoothingEnabled=true;
+  x.drawImage(off,L,0,W-L,H-18);
+  const ink2=getComputedStyle(document.documentElement).getPropertyValue('--ink-2').trim();
+  x.fillStyle=ink2; x.font='12px '+getComputedStyle(document.body).fontFamily;
+  [200,440,1000,2000].forEach(hz=>{ const y=(1-Math.log(hz/fmin)/Math.log(fmax/fmin))*(H-18); x.fillRect(L-5,y,4,1); x.fillText(hz>=1000?hz/1000+'k':hz,0,y+4); });
+  for(let sec=0;sec<=s.dur;sec+=1){ const xx=L+sec/s.dur*(W-L); x.fillRect(xx,H-17,1,4); x.fillText(sec+t('sec'),xx+2,H-3); }
+  cv.closest('.sfig-box').style.setProperty('--x0',L+'px');
+}
+function drawWave(cv){
+  const s=SNIPS.find(x=>x.id===cv.dataset.snd); if(!s||!s.tone) return;
+  const sr=8000, d=toneData(s,sr), dpr=Math.min(2,devicePixelRatio||1), W=cv.clientWidth, H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; const x=cv.getContext('2d'); x.scale(dpr,dpr);
+  x.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--ink-2').trim();
+  const per=d.length/W;
+  for(let i=0;i<W;i++){ let m=0; for(let k=Math.floor(i*per);k<Math.floor((i+1)*per);k++) m=Math.max(m,Math.abs(d[k])); const h=Math.max(1,m*H*.8); x.fillRect(i,(H-h)/2,1,h); }
+}
+function redrawSnd(){ $$('canvas.spec').forEach(drawSpec); $$('canvas.wave').forEach(drawWave); }
+function initSndModes(){
+  requestAnimationFrame(redrawSnd);
+  initRead();
+  $$('.swave-box').forEach(box=>{
+    let held=false, last=0;
+    const at=e=>{ const r=box.getBoundingClientRect(), s=SNIPS.find(x=>x.id===box.dataset.snd); return Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))*s.dur; };
+    box.addEventListener('pointerdown',e=>{ held=true; try{ box.setPointerCapture(e.pointerId); }catch(_){} playSnipAt(box.dataset.snd,at(e)); last=performance.now(); });
+    box.addEventListener('pointermove',e=>{ if(!held||performance.now()-last<90) return; last=performance.now(); playSnipAt(box.dataset.snd,at(e)); });
+    ['pointerup','pointercancel'].forEach(k=>box.addEventListener(k,()=>{ held=false; }));
+  });
+}
+let rzSnd=0;
+window.addEventListener('resize',()=>{ clearTimeout(rzSnd); rzSnd=setTimeout(()=>{ if(S.piece&&S.piece.sndSwitch) redrawSnd(); },150); });
 
 /* ==================================================================
    4. 화면
@@ -918,10 +1061,10 @@ function renderAbout(){
     </article>`;
 }
 
-function para(txt,i,cls){
-  // {s1:어구} 를 소리 어구로 바꿉니다
-  const ids=[];
-  const html=txt.replace(/\{([a-z]+\d+):([^}]+)\}/g,(m,id,ph)=>{ ids.push(id); return `<a class="cue" href="#" data-snd="${id}" role="button">${ph}</a>`; });
+function para(txt,i,cls,mode){
+  // {s1:어구} 를 소리 어구로 바꿉니다. 소리 형식(안 1~4)에 따라 어구의 모양이 달라집니다
+  const ids=[], mc=mode&&mode!=='inline' ? ' cue-'+mode : '';
+  const html=txt.replace(/\{([a-z]+\d+):([^}]+)\}/g,(m,id,ph)=>{ ids.push(id); return `<a class="cue${mc}" href="#" data-snd="${id}" role="button">${ph}</a>`; });
   return {html:`<p class="${cls||''}${i===0?' first':''}">${html}</p>`, ids};
 }
 function snipHTML(id){
@@ -930,6 +1073,24 @@ function snipHTML(id){
     <button type="button" class="pbtn" data-snd="${id}" aria-label="${t('play')}">${ICON.play}</button>
     <div><strong>${L(s.title)}</strong><span class="len">${s.dur<1?(Math.round(s.dur*10)/10)+t('sec'):fmt(s.dur)}</span><br>${L(s.desc)}</div></aside>`;
 }
+/* 안 2: 문단 사이의 스펙트로그램 도판 */
+const sndLen = s => s.dur<1?(Math.round(s.dur*10)/10)+t('sec'):fmt(s.dur);
+function sfigHTML(id){
+  const s=SNIPS.find(x=>x.id===id), n=pieceSnips().indexOf(s)+1;
+  return `<figure class="sfig"><div class="sfig-box" data-snd="${id}" role="button" tabindex="0" aria-label="${L(s.title)}, ${t('play')}">
+    <canvas class="spec" data-snd="${id}"></canvas><i class="ph" data-snd="${id}"></i></div>
+    <figcaption>${t('sfigCap')(n,sndLen(s))}</figcaption></figure>`;
+}
+/* 안 3: 여백의 파형. 누르거나 끌면 그 자리부터 */
+function waveHTML(id){
+  const s=SNIPS.find(x=>x.id===id);
+  return `<aside class="swave" data-snd="${id}"><div><strong>${L(s.title)}</strong><span class="len">${sndLen(s)}</span></div>
+    <div class="swave-box" data-snd="${id}" role="slider" tabindex="0" aria-label="${L(s.title)}" aria-valuemin="0" aria-valuemax="${s.dur}" aria-valuenow="0">
+    <canvas class="wave" data-snd="${id}"></canvas><i class="ph" data-snd="${id}"></i></div><p>${L(s.desc)}</p></aside>`;
+}
+/* 안 4: 여백에는 이름만 작게 */
+function readTagHTML(id){ const s=SNIPS.find(x=>x.id===id); return `<aside class="sread" data-snd="${id}">${L(s.title)}</aside>`; }
+
 function figHTML(n,wide){
   return `<figure class="fig${wide?' wide-fig':''}"><div class="slot"><span>${t('figSlot')} ${n}</span></div>
     <figcaption>${S.lang==='ko'?`그림 ${n}. 자리표시입니다. 그림 설명이 이 자리에 놓입니다.`:`Figure ${n}. Placeholder. The caption sits here.`}</figcaption></figure>`;
@@ -968,14 +1129,23 @@ function bodyHTML(p){
     const src=p.body ? (p.body[S.lang]||p.body.ko) : fill;
     if(p.sndPending) out+=`<p class="note small">${t('sndPending')}</p>`;
     if(p.sndNote) out+=`<p class="note small">${L(p.sndNote)}</p>`;
-    if(p.sndSwitch) out+=`<div class="switch small" role="group" aria-label="${t('swLabel')}"><span>${t('swLabel')}</span>
-      <button type="button" data-mode="multi" aria-pressed="${S.sndMode==='multi'}">${t('swMulti')}</button>
-      <button type="button" data-mode="single" aria-pressed="${S.sndMode==='single'}">${t('swSingle')}</button></div>`;
+    const M=p.sndSwitch ? S.sndMode : 'inline';
+    if(p.sndSwitch){
+      out+=`<div class="switch small" role="group" aria-label="${t('swLabel')}"><span>${t('swLabel')}</span>`+
+        ['inline','figure','margin','scroll'].map(m=>`<button type="button" data-mode="${m}" aria-pressed="${M===m}">${t('sw')[m]}</button>`).join('')+`</div>`;
+      out+=`<p class="mode-note small">${t('swNote')[M]}`+(M==='scroll'?` <button type="button" id="readBtn">${S.readOn?t('readOff'):t('readOn')}</button>`:'')+`</p>`;
+    }
     out+='</div><div class="wide prose">';
     const row=(html,aside)=>{ out+=`<div class="pr">${html}<div>${aside||''}</div></div>`; };
+    const sndRow=q=>{
+      if(M==='figure'){ row(q.html); q.ids.forEach(id=>row(sfigHTML(id))); }
+      else if(M==='margin') row(q.html,q.ids.map(waveHTML).join(''));
+      else if(M==='scroll') row(q.html,q.ids.map(readTagHTML).join(''));
+      else row(q.html,q.ids.map(snipHTML).join(''));
+    };
     let fresh=true;
     src.forEach(it=>{
-      if(typeof it==='string'){ const q=para(it,fresh?0:1); row(q.html,q.ids.map(snipHTML).join('')); fresh=false; return; }
+      if(typeof it==='string'){ const q=para(it,fresh?0:1,'',M); sndRow(q); fresh=false; return; }
       if(it.h)        row(`<h2>${it.h}</h2>`);
       else if(it.h3)  row(`<h3>${it.h3}</h3>`);
       else if(it.num) row('<ol class="enum">'+it.num.map(x=>`<li>${x}</li>`).join('')+'</ol>');
@@ -984,7 +1154,7 @@ function bodyHTML(p){
       else if(it.ul)  row('<ul>'+it.ul.map(x=>`<li>${x}</li>`).join('')+'</ul>');
       else if(it.ol)  row('<ol class="notes">'+it.ol.map(x=>`<li>${x}</li>`).join('')+'</ol>');
       else if(it.verse) row(it.verse.map((v,j)=>`<p class="verse${j===0?' start':''}">${v}</p>`).join(''));
-      else if(it.gap){ const q=para(it.gap,1,'gap'); row(q.html,q.ids.map(snipHTML).join('')); fresh=false; return; }
+      else if(it.gap){ const q=para(it.gap,1,'gap',M); sndRow(q); fresh=false; return; }
       fresh=true;
     });
     out='<div>'+out+'</div>';
@@ -1026,6 +1196,7 @@ function renderPiece(p){
     <div class="art tail"><nav class="back wide"><a href="#/">${t('backToList')}</a></nav></div>
     </article>`;
   if(p.tpl==='field') initField();
+  if(p.sndSwitch) initSndModes();
   $$('img[data-fig]').forEach(im=>{ im.src=window.PAPER.figs[im.dataset.fig]; });
 }
 
@@ -1495,6 +1666,7 @@ function setTheme(v){
   applyChrome();
 }
 function applyChrome(){
+  if(window.redrawSnd && S.piece && S.piece.sndSwitch) requestAnimationFrame(redrawSnd);
   document.documentElement.lang=S.lang;
   const b=$('#themeBtn'); b.textContent = dark()? t('toLight') : t('toDark');
   b.setAttribute('aria-label', t('themeLabel')+': '+b.textContent);
@@ -1536,7 +1708,11 @@ document.addEventListener('click',e=>{
   if(jp){ e.preventDefault(); const el=document.getElementById(jp.dataset.jump);
     if(el){ el.scrollIntoView({block:'start'}); $('#top').classList.add('hide'); } return; }
   const sw=e.target.closest('.switch button');
-  if(sw){ stopAll(); S.sndMode=sw.dataset.mode; $$('.switch button').forEach(b=>b.setAttribute('aria-pressed',String(b===sw))); return; }
+  if(sw){ stopAll(); S.sndMode=sw.dataset.mode; const y=window.scrollY; render(); window.scrollTo(0,y); return; }
+  if(e.target.closest('#readBtn')){ S.readOn=!S.readOn; if(S.readOn) ac(); else stopAll();
+    $('#readBtn').textContent=S.readOn?t('readOff'):t('readOn'); initRead(); return; }
+  const sf=e.target.closest('.sfig-box');
+  if(sf){ if(P.now&&P.now.id===sf.dataset.snd) stopAll(); else playSnipAt(sf.dataset.snd,0); return; }
   const fi=e.target.closest('.paper figure img');
   if(fi){ fi.closest('figure').classList.toggle('zoom'); return; }
   const c=e.target.closest('.cue,.pbtn');
@@ -1548,6 +1724,10 @@ document.addEventListener('keydown',e=>{
   if(e.key===' ' && e.target.classList && e.target.classList.contains('cue')){ e.preventDefault(); playSnip(e.target.dataset.snd); }
   if((e.key==='Enter'||e.key===' ') && e.target.matches && e.target.matches('.paper figure img')){ e.preventDefault(); e.target.closest('figure').classList.toggle('zoom'); }
   if(e.key==='Escape') stopAll();
+  if((e.key==='Enter'||e.key===' ') && e.target.classList && e.target.classList.contains('sfig-box')){ e.preventDefault(); e.target.click(); }
+  if((e.key==='ArrowRight'||e.key==='ArrowLeft') && e.target.classList && e.target.classList.contains('swave-box')){
+    e.preventDefault(); const id=e.target.dataset.snd, s=SNIPS.find(x=>x.id===id), cur=P.now&&P.now.id===id ? AC.currentTime-P.now.t0+P.now.offset : 0;
+    playSnipAt(id,cur+(e.key==='ArrowRight'?.5:-.5)); }
 });
 
 let lastY=0;
