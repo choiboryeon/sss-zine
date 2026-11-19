@@ -433,7 +433,7 @@ p.sndnote{text-indent:0;margin:0 0 2.2em}
 /* 앞뒤 글 */
 .back{border-top:1px solid var(--ink);margin-top:80px}
 .back a{display:block;padding:1.1em 0;text-decoration:none;font-family:var(--display);font-size:clamp(20px,2.3vw,28px)}
-.back a:hover,.back a:focus-visible{background:var(--ink);color:var(--paper);outline:0;padding-left:12px;padding-right:12px;margin:0 -12px}
+.back a:hover,.back a:focus-visible{background:var(--ink);color:var(--paper);outline:0;padding-left:12px;padding-right:12px;margin:0 -12px;filter:none}   /* 점묘가 칠한 면까지 뚫지 않도록 */
 
 @media (max-width:1040px){
   .art{grid-template-columns:minmax(0,var(--measure)) minmax(0,var(--margin-col))}
