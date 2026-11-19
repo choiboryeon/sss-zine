@@ -475,10 +475,12 @@ p.sndnote{text-indent:0;margin:0 0 2.2em}
 .ptoc::before{flex:0 0 100%;margin-bottom:.6em}
 .prose ol.enum li::marker{font-family:"Bevan",serif}
 /* 제목 자리: 한글과 영문 모두 함렛(Hahmlet) Black. Bevan은 첫 화면 약어 풀이와 본문 숫자에만 (Bevan을 가짜 굵게 만들지 않도록) */
-.who,.head h1,.head .by,.prose h2,.prose h3,.paper h2,.paper h3,.back a,.credits :is(.cr-k,.cr-v){font-weight:900;font-synthesis:none}
+.who,.head h1,.head .by,.prose h2,.prose h3,.paper h2,.paper h3,.back a{font-weight:900;font-synthesis:none}
 /* 목차의 글 제목: 같은 함렛으로, 필자명의 2/3 크기 */
 .row .what{font-family:var(--display);font-weight:700;font-synthesis:none;font-size:clamp(18px,2.55vw,35px);line-height:1.3;filter:url(#stip)}
-.credits :is(.cr-k,.cr-v){font-family:var(--display)}
+.credits :is(.cr-k,.cr-v){font-family:var(--body)}   /* 크레딧은 본문과 같은 서체 */
+.credits .cr-k{font-weight:700}
+.credits .cr-v{font-weight:600}
 .credits .cr-v{font-size:1.1rem;line-height:1.45}
 .credits .cr-k{color:var(--ink)}
 .head{position:relative}
