@@ -1,0 +1,35 @@
+{
+    "preserved_edits":  [
+                            "aboutQ EN: of -\u003e for",
+                            "aboutNote KO/EN + renderAbout .about-note",
+                            "aditya sndNote italic Choi Boryeon credit KO/EN",
+                            "anikin_fig_eng: Korean filenames -\u003e ASCII appendix_figS*.svg / appendix_tableS*.svg"
+                        ],
+    "anikin_renames":  {
+                           "부록_그림S4.svg":  "appendix_figS4.svg",
+                           "부록_그림S8.svg":  "appendix_figS8.svg",
+                           "부록_그림S21.svg":  "appendix_figS21.svg",
+                           "부록_그림S7.svg":  "appendix_figS7.svg",
+                           "부록_그림S23.svg":  "appendix_figS23.svg",
+                           "부록_그림S6.svg":  "appendix_figS6.svg",
+                           "부록_그림S10.svg":  "appendix_figS10.svg",
+                           "부록_그림S11.svg":  "appendix_figS11.svg",
+                           "부록_그림S13.svg":  "appendix_figS13.svg",
+                           "부록_그림S22.svg":  "appendix_figS22.svg",
+                           "부록_그림S20.svg":  "appendix_figS20.svg",
+                           "부록_그림S2.svg":  "appendix_figS2.svg",
+                           "부록_표S1.svg":  "appendix_tableS1.svg",
+                           "부록_그림S18.svg":  "appendix_figS18.svg",
+                           "부록_그림S24.svg":  "appendix_figS24.svg",
+                           "부록_그림S17.svg":  "appendix_figS17.svg",
+                           "부록_그림S9.svg":  "appendix_figS9.svg",
+                           "부록_그림S15.svg":  "appendix_figS15.svg",
+                           "부록_그림S1.svg":  "appendix_figS1.svg",
+                           "부록_그림S19.svg":  "appendix_figS19.svg",
+                           "부록_그림S16.svg":  "appendix_figS16.svg",
+                           "부록_그림S12.svg":  "appendix_figS12.svg",
+                           "부록_그림S14.svg":  "appendix_figS14.svg",
+                           "부록_그림S3.svg":  "appendix_figS3.svg",
+                           "부록_그림S5.svg":  "appendix_figS5.svg"
+                       }
+}
